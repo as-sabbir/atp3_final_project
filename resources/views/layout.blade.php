@@ -54,6 +54,10 @@
                     <li>
                         <a href="/contact">Contact</a>
                     </li>
+					
+					<li>
+                        <a href="/register">Registration</a>
+                    </li>
 
                 </ul>
             </div>
@@ -68,6 +72,7 @@
 @yield('contact')
 @yield('login')
 @yield('about')
+@yield('register_view')
 
     </div>
     <!-- /.container -->

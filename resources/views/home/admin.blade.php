@@ -33,7 +33,10 @@
 </head>
 
 <body>
-
+@php
+    $firstName = session('firstName');
+    $id = session('id');
+@endphp
     <div id="wrapper">
 
         <!-- Navigation -->
@@ -66,6 +69,9 @@
                 <ul class="nav navbar-nav side-nav">
                     <li class="active">
                         <a href="/admin"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                    </li>
+					<li>
+                        <a href="/admin/profile/{{$id}}"><i class="fa fa-fw fa-bar-chart-o"></i> View Profile</a>
                     </li>
                     <li>
                         <a href="/admin/contact"><i class="fa fa-fw fa-wrench"></i>Contact</a>

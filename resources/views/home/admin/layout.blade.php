@@ -69,6 +69,9 @@
                     <li class="active">
                         <a href="/admin"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
+					<li>
+                        <a href="/admin/profile/{{$id}}"><i class="fa fa-fw fa-bar-chart-o"></i> View Profile</a>
+                    </li>
                     <li>
                        <a href="/admin/contact"><i class="fa fa-fw fa-wrench"></i>Contact</a>
                     </li>
@@ -115,6 +118,8 @@
 @yield('add_representative')
 @yield('contact')
 @yield('inbox')
+@yield('profile')
+@yield('edit_profile')
             <!-- /.container-end -->
 
         </div>

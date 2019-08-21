@@ -14,6 +14,32 @@ class AdminController extends Controller
 		return view('home.admin.show_users', ['user'=>$data]);
 	}
 	
+     public function profile($id){
+  		$result = DB::table('users')->where('id', $id)->first();
+		//echo $result;
+		//print_r($result);
+		return view('home.admin.profile', ['user'=>$result]);
+    }
+ 
+ 	public function edit($id){
+		//echo $id;
+		$result = DB::table('users')->where('id', $id)->first();
+		//echo $result;
+		//print_r($result);
+		return view('home.admin.edit_profile', ['user'=>$result]);
+    }
+ 
+ 	public function update(Request $req, $id){
+		
+   
+
+        DB::table('users')
+            ->where('id', $id)
+            ->update(['firstName' => $req->firstName,'lastName' => $req->lastName,'phone' => $req->phone,'email' => $req->email,'userName' => $req->userName,'password' => $req->password,'gender' => $req->gender,'dateOfBirth' => $req->dateOfBirth]);
+
+				return back()->withInput();
+
+    }
  
 
     public function search(Request $req){
@@ -69,7 +95,7 @@ class AdminController extends Controller
             "phone"  => "required",
             "email"  => "required | unique:users,email",
             "userName"  => "required | unique:users,userName",
-            "password"  => "required",
+            "password"  => "required | min:4",
             "gender"  => "required",
             "dateOfBirth"  => "required",
             "user_role"  => "required",

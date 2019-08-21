@@ -15,7 +15,7 @@ class RepresentativeTypeVerify
      */
     public function handle($request, Closure $next)
     {
-        if($request->session()->get('user_role') == "representative"){
+        if($request->session()->get('user_role') == "customer"){
             return $next($request);
         }else{
             return redirect()->route('login.login');

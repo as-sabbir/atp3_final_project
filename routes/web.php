@@ -20,7 +20,8 @@ Route::get('/home', 'HomeController@index')->name('home.index');
 Route::get('/contact', 'HomeController@show_contact')->name('home.show_contact');
 Route::post('/contact', 'HomeController@add_contact')->name('home.add_contact');
 Route::get('/about', 'HomeController@about')->name('home.about');
-
+Route::get('/register', 'HomeController@register_view')->name('home.register_view');
+Route::post('/register', 'HomeController@add_user')->name('admin.add_user');
 Route::get('/login', 'LoginController@login')->name('login.login');
 Route::post('/login', 'LoginController@verify');
 
@@ -29,6 +30,11 @@ Route::group(['middleware'=>['sess']],function(){
 	Route::group(['middleware'=>['user_admin']], function(){
 			
 		Route::get('/admin', 'HomeController@admin')->name('home.admin');
+		
+		Route::get('/admin/profile/{sid}', 'AdminController@profile');
+		Route::get('/admin/profile/edit/{sid}', 'AdminController@edit');
+		Route::post('/admin/profile/edit/{sid}', 'AdminController@update');
+		
 		Route::get('/admin/users', 'AdminController@show_users')->name('admin.show_users');
 		Route::get('/admin/users/search', 'AdminController@search')->name('admin.search');
 		Route::get('/admin/users/delete/{sid}', 'AdminController@delete_user');
@@ -47,7 +53,7 @@ Route::group(['middleware'=>['sess']],function(){
 	});
 	
 	Route::group(['middleware'=>['user_representative']], function(){
-		Route::get('/representative', 'HomeController@representative')->name('home.representative');
+		Route::get('/customer', 'HomeController@representative')->name('home.representative');
 		Route::get('/representative/profile/{sid}', 'RepresentativeController@profile');
 		Route::get('/representative/profile/edit/{sid}', 'RepresentativeController@edit');
 		Route::post('/representative/profile/edit/{sid}', 'RepresentativeController@update');

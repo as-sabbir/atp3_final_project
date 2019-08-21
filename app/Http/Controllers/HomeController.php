@@ -36,6 +36,39 @@ class HomeController extends Controller
 		return view('about');
 	}
 	
+	public function register_view(Request $req){
+		return view('register_view');
+	}
+	
+	
+	public function add_user(Request $req){
+		
+		$req->validate([
+
+            "firstName"  => "required",
+            "lastName"  => "required",
+            "phone"  => "required",
+            "email"  => "required | unique:users,email",
+            "userName"  => "required | unique:users,userName",
+            "password"  => "required | min:4",
+            "gender"  => "required",
+            "dateOfBirth"  => "required",
+            "user_role"  => "required",
+
+        ]);
+		
+		DB::table('users')->insert(
+    ['firstName' => $req->firstName,'lastName' => $req->lastName,'phone' => $req->phone, 'email' => $req->email,'userName' => $req->userName, 'password' => $req->password,'gender' => $req->gender,'dateOfBirth' => $req->dateOfBirth,'user_role' => $req->user_role]
+    );
+        echo "successfully";
+	}
+	
+	
+	
+	
+	
+
+	
 	public function add_contact(Request $req){
 		
 		$req->validate([

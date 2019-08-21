@@ -44,7 +44,7 @@ class LoginController extends Controller
 			echo $user_type;
 			      if ($user_type=='admin') {
 					return redirect()->route('home.admin');
-				} elseif ($user_type=='representative') {
+				} elseif ($user_type=='customer') {
 					return redirect()->route('home.representative');
 				} 
 				elseif ($user_type=='manager') {
